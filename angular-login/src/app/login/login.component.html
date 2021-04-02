@@ -1,0 +1,37 @@
+<div id="login">
+  <h3 class="text-center text-white pt-5">Login form</h3>
+  <div class="container">
+    <div id="login-row" class="row justify-content-center align-items-center">
+      <div id="login-column" class="col-md-6">
+        <div id="login-box" class="col-md-12">
+          <form [formGroup]="loginForm" id="login-form" class="form" (ngSubmit)="onSubmit()" >
+            <h3 class="text-center text-info">Login</h3>
+            <div class="form-group">
+              <label for="emailId" class="text-info">Username:</label><br>
+              <input type="email" formControlName="emailId" id="emailId" class="form-control">
+              <div class="form-control-feedback"
+                   *ngIf="f.emailId.errors && (f.emailId.dirty || f.emailId.touched)">
+                <div class="alert alert-danger" role="alert" *ngIf="f.emailId.errors.required">Email is required</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.emailId.errors.pattern">The email address must contain at least the @ character</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="pswd" class="text-info">Password:</label><br>
+              <input type="password" formControlName="pswd" id="pswd" class="form-control">
+              <div class="form-control-feedback"
+                   *ngIf="f.pswd.errors && (f.pswd.dirty || f.pswd.touched)">
+                <div class="alert alert-danger" role="alert" *ngIf="f.pswd.errors.required">password is required</div>
+                <div class="alert alert-danger" role="alert" *ngIf="f.pswd.errors.minlength">This password should contain min length of 6</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" [disabled]="!loginForm.valid" class="btn btn-info btn-md">
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
